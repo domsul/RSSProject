@@ -7,18 +7,21 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.marci.rss_projectjava.R;
 
+import database.DatabaseHelper;
 import ui.news.NewsFragment;
 import ui.overview.OverviewFragment;
 
 public class MainActivity extends AppCompatActivity implements OverviewFragmentActivityListener {
 
   private FragmentManager fragmentManager = getSupportFragmentManager();
+  DatabaseHelper myDb;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     setUpOverviewFragment();
+    myDb=new DatabaseHelper(this);
   }
 
   @Override
