@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">RSS-ProjectJava</string>
+    <string name="european_news">european news</string>
+    <string name="science_news">science news</string>
+    <string name="technology_news">technology news</string>
+</resources>
