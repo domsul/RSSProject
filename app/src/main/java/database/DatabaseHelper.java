@@ -11,10 +11,10 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME="Database.db";
     public static final String TABLE_NAME="news_table";
-    public static final String COL1="ID";
-    public static final String COL2="TITLE";
-    public static final String COL3="CONTENT";
-    public static final String COL4="DATE";
+    public static final String COL_1="ID";
+    public static final String COL_2="TITLE";
+    public static final String COL_3="CONTENT";
+    public static final String COL_4="DATE";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
