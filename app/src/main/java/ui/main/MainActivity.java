@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity implements OverviewFragmentA
               t.show();
           } while(c.moveToNext());
       }
+      
       c.close();
       myDb.DeleteAllData();
   }
