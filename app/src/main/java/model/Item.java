@@ -7,7 +7,6 @@ import java.util.List;
  */
 
 public class Item {
-
   public String title;
   public String pubDate;
   public String link;

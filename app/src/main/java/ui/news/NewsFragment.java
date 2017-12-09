@@ -52,6 +52,8 @@ public class NewsFragment extends Fragment implements CallbackRss {
     NewsAdapter newsAdapter = new NewsAdapter(rss.items);
     newsRecyclerView.setAdapter(newsAdapter);
     newsAdapter.notifyDataSetChanged();
+    //MyIntentService mis=new MyIntentService(rss);
+    //mis.startActionFoo(getContext(),rss);
   }
 
   @Override

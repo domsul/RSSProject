@@ -10,5 +10,5 @@ public class news_table {
     private int id;
     private String title;
     private String content;
-    private Date date;
+    private String date;
 }
