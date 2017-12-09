@@ -11,4 +11,5 @@ public class news_table {
     private String title;
     private String content;
     private String date;
+    private String description;
 }

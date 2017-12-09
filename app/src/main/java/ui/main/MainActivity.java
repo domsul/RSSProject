@@ -25,22 +25,12 @@ public class MainActivity extends AppCompatActivity implements OverviewFragmentA
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     setUpOverviewFragment();
+    App.setContext(this);
     myDb=new DatabaseHelper(this);
-    myDb.insertByleCo();
-    Cursor c=myDb.SelectData();
-    Toast t;
-      Context context = getApplicationContext();
-      if (c.moveToFirst()){
-          do {
-              String column1 = c.getString(0);
-              String column2 = c.getString(1);
-              String column3 = c.getString(2);
-              t=Toast.makeText(context,column1+", "+column2+", "+column3,Toast.LENGTH_LONG);
-              t.show();
-          } while(c.moveToNext());
-      }
-      
-      c.close();
+    myDb.Destroy();
+
+    //przykładowe dane - dla testu
+    //myDb.insertByleCo();
       myDb.DeleteAllData();
   }
 
@@ -58,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements OverviewFragmentA
     fragmentManager.beginTransaction()
         .replace(R.id.fragment_container, new OverviewFragment())
         .commit();
+
   }
 
   @Override
@@ -65,8 +56,24 @@ public class MainActivity extends AppCompatActivity implements OverviewFragmentA
     Bundle bundle = new Bundle();
     bundle.putString("newsUrl", url);
     Fragment currentFragment = new NewsFragment();
-
     currentFragment.setArguments(bundle);
+      Cursor c = myDb.SelectData();
+      Toast t;
+      Context context = getApplicationContext();
+      if (c.moveToFirst()){
+          do {
+              String column1 = c.getString(c.getColumnIndex("ID"));
+              String column2 = c.getString(c.getColumnIndex("TITLE"));
+              String column3 = c.getString(c.getColumnIndex("CONTENT"));
+              String column4 = c.getString(c.getColumnIndex("DATE"));
+              String column5 = c.getString(c.getColumnIndex("DESCRIPTION"));
+              String column6 = c.getString(c.getColumnIndex("CATEGORY"));
+              t=Toast.makeText(context,column1+", "+column2+", "+column3+", "+column4+", "+column5+", "+column6,Toast.LENGTH_LONG);
+              t.show();
+          } while(c.moveToNext());
+      }
+
+      c.close();
     fragmentManager.beginTransaction()
         .replace(R.id.fragment_container, currentFragment)
         .addToBackStack(null)

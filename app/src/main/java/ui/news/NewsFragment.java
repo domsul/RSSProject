@@ -47,13 +47,12 @@ public class NewsFragment extends Fragment implements CallbackRss {
 
   @Override
   public void onSuccess(RssObject rss) {
-    toolbarNews.setTitle(rss.feed.title.split(";")[1]);
-    progressBar.setVisibility(View.INVISIBLE);
-    NewsAdapter newsAdapter = new NewsAdapter(rss.items);
-    newsRecyclerView.setAdapter(newsAdapter);
-    newsAdapter.notifyDataSetChanged();
-    //MyIntentService mis=new MyIntentService(rss);
-    //mis.startActionFoo(getContext(),rss);
+      rss.Funkcja();
+      toolbarNews.setTitle(rss.feed.title.split(";")[1]);
+      progressBar.setVisibility(View.INVISIBLE);
+      NewsAdapter newsAdapter = new NewsAdapter(rss.items);
+      newsRecyclerView.setAdapter(newsAdapter);
+      newsAdapter.notifyDataSetChanged();
   }
 
   @Override

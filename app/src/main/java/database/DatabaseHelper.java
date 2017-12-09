@@ -20,6 +20,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String COL_2="TITLE";
     public static final String COL_3="CONTENT";
     public static final String COL_4="DATE";
+    public static final String COL_5="DESCRIPTION";
+    public static final String COL_6="CATEGORY";
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, 1);
@@ -28,7 +30,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("CREATE TABLE "+TABLE_NAME+" (ID INTEGER PRIMARY KEY AUTOINCREMENT, TITLE TEXT, CONTENT TEXT, DATE TEXT);");
+        db.execSQL("CREATE TABLE "+TABLE_NAME+" (ID INTEGER PRIMARY KEY AUTOINCREMENT, TITLE TEXT, CONTENT TEXT, DATE TEXT, DESCRIPTION TEXT, CATEGORY TEXT);");
     }
 
     @Override
@@ -37,13 +39,15 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertData(String title, String content, String date) {
+    public boolean insertData(String title, String content, String date, String description, String category) {
         SQLiteDatabase db= this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
         contentValues.put(COL_2,title);
         contentValues.put(COL_3,content);
         contentValues.put(COL_4,date);
+        contentValues.put(COL_5,description);
+        contentValues.put(COL_6,category);
         long result= db.insert(TABLE_NAME,null,contentValues);
 
         if(result==-1)
@@ -59,6 +63,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(COL_2,"aa");
         contentValues.put(COL_3,"bb");
         contentValues.put(COL_4,"cc");
+        contentValues.put(COL_5,"dd");
+        contentValues.put(COL_6,"ee");
         long result= db.insert(TABLE_NAME,null,contentValues);
 
         if(result==-1)
@@ -70,20 +76,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public Cursor SelectData() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = db.rawQuery("SELECT * FROM "+TABLE_NAME+";", null);
-        if (c.moveToFirst()){
-            do {
-                String column1 = c.getString(0);
-                String column2 = c.getString(1);
-                String column3 = c.getString(2);
-            } while(c.moveToNext());
-        }
-        //c.close();
-        //db.close();
+
         return c;
     }
 
     public void DeleteAllData() {
         SQLiteDatabase db= this.getWritableDatabase();
-        db.execSQL("DELETE FROM "+TABLE_NAME+" WHERE ID<100;");
+        db.execSQL("DELETE FROM "+TABLE_NAME+" WHERE ID<9999;");
+    }
+
+    public void Destroy() {
+        SQLiteDatabase db= this.getWritableDatabase();
+        db.execSQL("DROP TABLE "+TABLE_NAME);
+        onCreate(db);
     }
 }
