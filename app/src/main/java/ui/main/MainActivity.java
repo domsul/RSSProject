@@ -27,7 +27,9 @@ public class MainActivity extends AppCompatActivity implements OverviewFragmentA
     setUpOverviewFragment();
     App.setContext(this);
     myDb=new DatabaseHelper(this);
-    myDb.Destroy();
+
+    //usuwanie tabeli z bazy
+    //myDb.Destroy();
 
     //przykładowe dane - dla testu
     //myDb.insertByleCo();
@@ -68,6 +70,7 @@ public class MainActivity extends AppCompatActivity implements OverviewFragmentA
               String column4 = c.getString(c.getColumnIndex("DATE"));
               String column5 = c.getString(c.getColumnIndex("DESCRIPTION"));
               String column6 = c.getString(c.getColumnIndex("CATEGORY"));
+              //przetworzenie danych pobranych z kursora na swój sposób
               t=Toast.makeText(context,column1+", "+column2+", "+column3+", "+column4+", "+column5+", "+column6,Toast.LENGTH_LONG);
               t.show();
           } while(c.moveToNext());
