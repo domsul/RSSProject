@@ -100,7 +100,6 @@ public class MainActivity extends AppCompatActivity implements OverviewFragmentA
         .addToBackStack(null)
         .commit();
   }
-
     // Method to manually check connection status
     private void checkConnection() {
         boolean isConnected = ConnectivityReceiver.isConnected();
